@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationcatrecicleview.databinding.CatLayoutBinding
 
@@ -36,7 +37,7 @@ class AddAdapter(var list: MutableList<Cat>): RecyclerView.Adapter<CatViewHolder
             override fun performFiltering(charSequence: CharSequence?): FilterResults {
                 val word : String = charSequence.toString()
                 if (word.isEmpty()){
-                    filterList = list
+                    //filterList = list
 
                 }else{
                     var resultList = ArrayList<Cat>()
@@ -46,6 +47,14 @@ class AddAdapter(var list: MutableList<Cat>): RecyclerView.Adapter<CatViewHolder
                         }
 
                     }
+
+
+
+
+
+
+
+
                 }
                 val filterResults = FilterResults()
                 filterResults.values = filterList
@@ -56,7 +65,7 @@ class AddAdapter(var list: MutableList<Cat>): RecyclerView.Adapter<CatViewHolder
       filterList = if(results == null || results.values == null)
           ArrayList<Cat>()
       else
-          results.values!! as MutableList<Cat>
+          results.values as MutableList<Cat>
                 notifyDataSetChanged()//принудительно все обновить
             }
 
