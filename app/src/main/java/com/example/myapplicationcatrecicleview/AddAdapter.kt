@@ -37,18 +37,25 @@ class AddAdapter(var list: MutableList<Cat>): RecyclerView.Adapter<CatViewHolder
             override fun performFiltering(charSequence: CharSequence?): FilterResults {
                 val word : String = charSequence.toString()
                 if (word.isEmpty()){
-                    //filterList = list
+                    filterList = list
 
                 }else{
                     var resultList = ArrayList<Cat>()
                     for (cat in list){
-                        if (cat.name.toUpperCase().contains(word.toUpperCase())){
-                            filterList.add(cat)
+                        if (cat.name.toUpperCase().contains(word.toString().toUpperCase())){
+                            resultList.add(cat)
                         }
 
                     }
 
 
+//                    val resultList = ArrayList<Model>()
+//                    for (row in countryList) {
+//                        if (row.name.toLowerCase().contains(constraint.toString().toLowerCase())) {
+//                            resultList.add(row)
+//                        }
+//                    }
+                  filterList = resultList
 
 
 
@@ -62,11 +69,9 @@ class AddAdapter(var list: MutableList<Cat>): RecyclerView.Adapter<CatViewHolder
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-      filterList = if(results == null || results.values == null)
-          ArrayList<Cat>()
-      else
-          results.values as MutableList<Cat>
-                notifyDataSetChanged()//принудительно все обновить
+      filterList = results?.values as MutableList<Cat>
+
+               notifyDataSetChanged()//принудительно все обновить
             }
 
         }
